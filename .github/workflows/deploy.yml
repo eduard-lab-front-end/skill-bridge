@@ -23,6 +23,7 @@ jobs:
         working-directory: ./skillBridgeBackend
         run: npm install
       - name: Apply all pending migrations to the database
+        working-directory: ./skillBridgeBackend
         run: npx prisma migrate deploy
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
