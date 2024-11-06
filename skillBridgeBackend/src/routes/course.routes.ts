@@ -3,7 +3,7 @@ import { RequestWithPayload } from "../types/requests";
 
 const prisma = require("../db");
 const router = require("express").Router();
-const { isAuthenticated } = require("../middleware/route-guard-middleware.ts");
+const { isAuthenticated } = require("../middleware/route-guard-middleware");
 
 router.post(
   "/",
