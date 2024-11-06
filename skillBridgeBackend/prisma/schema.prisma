@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @unique @default(cuid())
+  userName     String
+  email        String   @unique
+  passwordHash String
+  role         UserRole
+  courses      Course[]
+  blogs        Blog[]
+}
+
+enum UserRole {
+  student
+  teacher
+  admin
+}
+
+model Course {
+  id            String      @id @default(cuid())
+  title         String
+  image         String
+  durationWeeks Int
+  studentCount  Int
+  price         Float
+  discount      Float
+  category      String
+  overview      String
+  curriculum    Json        @default("[{\"modules\": []}]")
+  level         CourseLevel
+  lessonCount   Int
+  quizCount     Int
+  faqs          Json        @default("[{\"question\": \"\", \"answer\": \"\"}]")
+  teacherId     String
+  teacher       User        @relation(fields: [teacherId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model Blog {
+  id        String    @id @default(cuid())
+  title     String
+  content   String
+  imageUrl  String?
+  published DateTime?
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+enum CourseLevel {
+  Beginner
+  Intermediate
+  Advanced
+}
