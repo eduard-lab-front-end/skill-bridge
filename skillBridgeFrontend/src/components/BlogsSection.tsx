@@ -9,16 +9,16 @@ import {
 import { IconCalendar } from "@tabler/icons-react";
 import { Separator } from "./ui/separator";
 
-type TempObj = {
-  title: string;
-  img: string;
-  createdBy: string;
-  published: string;
-  description: string;
-}[];
+// type TempObj = {
+//   title: string;
+//   img: string;
+//   createdBy: string;
+//   published: string;
+//   description: string;
+// }[];
 
 export const BlogsSection = () => {
-  const mockCourses: TempObj = [
+  const mockCourses = [
     {
       title: "Art & Design",
       img: "/src/assets/images/blog-img-1.png",

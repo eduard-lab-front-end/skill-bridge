@@ -8,7 +8,7 @@ export interface SessionContextType {
   fetchWithToken: <T>(
     endpoint: string,
     method?: "GET" | "POST" | "PUT" | "DELETE",
-    payload?: any
+    payload?: unknown
   ) => Promise<T | undefined>;
 }
 

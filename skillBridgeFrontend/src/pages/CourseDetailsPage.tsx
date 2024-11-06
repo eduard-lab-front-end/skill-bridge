@@ -4,8 +4,6 @@ import { CardDescription, CardHeader } from "@/components/ui/card";
 import { ToastAction } from "@/components/ui/toast";
 import { SessionContext } from "@/contexts/SessionContext";
 import { useToast } from "@/hooks/use-toast";
-
-import { error } from "console";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 

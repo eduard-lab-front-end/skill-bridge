@@ -25,7 +25,6 @@ import { SessionContext } from "@/contexts/SessionContext";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "./ui/toast";
 
-
 interface MyComponentProps {
   trigger: React.ReactNode;
 }
@@ -55,7 +54,7 @@ const formSchema = z.object({
 });
 export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
   const { fetchWithToken } = useContext(SessionContext);
-  const { toast } = useToast()
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -78,20 +77,18 @@ export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values);
     try {
-      const response = await fetchWithToken("/api/courses", "POST", values);
-      if(response.status === 201) {
-        toast({
-          title: "Created",
-          description: "Successfully created",
-        })
-      }
+      await fetchWithToken("/api/courses", "POST", values);
+      toast({
+        title: "Created",
+        description: "Successfully created",
+      });
     } catch (error) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description: "There was a problem with your request.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
-      })
+      });
       console.log(error);
     }
   };

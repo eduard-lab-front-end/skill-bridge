@@ -1,5 +1,4 @@
 const app = require("./app");
-console.log("Server runs");
 
 const PORT = process.env.PORT || 5005;
 

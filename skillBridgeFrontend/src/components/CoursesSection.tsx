@@ -18,66 +18,66 @@ import { SessionContext } from "@/contexts/SessionContext";
 import { useNavigate } from "react-router-dom";
 import { CoursesDialogFormCreate } from "./CoursesDialogFormCreate copy";
 
-type TempObj = {
-  title: string;
-  img: string;
-  createdBy: string;
-  duration: string;
-  students: string;
-  price: number;
-}[];
+// type TempObj = {
+//   title: string;
+//   img: string;
+//   createdBy: string;
+//   duration: string;
+//   students: string;
+//   price: number;
+// }[];
 
 export const CoursesSection = () => {
-  const mockCourses: TempObj = [
-    {
-      title: "Art & Design",
-      img: "/src/assets/images/course-1.png",
-      createdBy: "Eric NewOne",
-      duration: "2",
-      students: "156",
-      price: 49,
-    },
-    {
-      title: "Art & Design",
-      img: "/src/assets/images/course-2.png",
-      createdBy: "Eric NewOne",
-      duration: "2",
-      students: "156",
-      price: 49,
-    },
-    {
-      title: "Art & Design",
-      img: "/src/assets/images/course-3.png",
-      createdBy: "Eric NewOne",
-      duration: "2",
-      students: "156",
-      price: 49,
-    },
-    {
-      title: "Art & Design",
-      img: "/src/assets/images/course-2.png",
-      createdBy: "Eric NewOne",
-      duration: "2",
-      students: "156",
-      price: 49,
-    },
-    {
-      title: "Art & Design",
-      img: "/src/assets/images/course-3.png",
-      createdBy: "Eric NewOne",
-      duration: "2",
-      students: "156",
-      price: 49,
-    },
-    {
-      title: "Art & Design",
-      img: "/src/assets/images/course-2.png",
-      createdBy: "Eric NewOne",
-      duration: "2",
-      students: "156",
-      price: 49,
-    },
-  ];
+  // const mockCourses: TempObj = [
+  //   {
+  //     title: "Art & Design",
+  //     img: "/src/assets/images/course-1.png",
+  //     createdBy: "Eric NewOne",
+  //     duration: "2",
+  //     students: "156",
+  //     price: 49,
+  //   },
+  //   {
+  //     title: "Art & Design",
+  //     img: "/src/assets/images/course-2.png",
+  //     createdBy: "Eric NewOne",
+  //     duration: "2",
+  //     students: "156",
+  //     price: 49,
+  //   },
+  //   {
+  //     title: "Art & Design",
+  //     img: "/src/assets/images/course-3.png",
+  //     createdBy: "Eric NewOne",
+  //     duration: "2",
+  //     students: "156",
+  //     price: 49,
+  //   },
+  //   {
+  //     title: "Art & Design",
+  //     img: "/src/assets/images/course-2.png",
+  //     createdBy: "Eric NewOne",
+  //     duration: "2",
+  //     students: "156",
+  //     price: 49,
+  //   },
+  //   {
+  //     title: "Art & Design",
+  //     img: "/src/assets/images/course-3.png",
+  //     createdBy: "Eric NewOne",
+  //     duration: "2",
+  //     students: "156",
+  //     price: 49,
+  //   },
+  //   {
+  //     title: "Art & Design",
+  //     img: "/src/assets/images/course-2.png",
+  //     createdBy: "Eric NewOne",
+  //     duration: "2",
+  //     students: "156",
+  //     price: 49,
+  //   },
+  // ];
   const navigate = useNavigate();
   const navigateHandler = (courseId: string) => {
     navigate(`/courses/${courseId}`);

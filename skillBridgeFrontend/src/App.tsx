@@ -8,7 +8,7 @@ import { ContactPage } from "./pages/ContactPage";
 import RegisterPage from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { CourseDetailsPage } from "./pages/CourseDetailsPage";
-import { Toaster } from "@/components/ui/Toaster";
+import { Toaster } from "@/components/ui/toaster";
 
 function App() {
   return (

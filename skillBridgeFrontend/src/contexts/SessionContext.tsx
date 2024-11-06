@@ -8,7 +8,10 @@ export const SessionContext = createContext<SessionContextType>({
   verifyToken: async () => {},
   logout: () => {},
   courses: [],
-  fetchWithToken: async () => {},
+  fetchWithToken: async function () {
+    console.warn("fetchWithToken called without implementation.");
+    return undefined;
+  },
 });
 
 export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
@@ -18,7 +21,7 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [courses, setCourses] = useState<CoursesType[]>([]);
-
+  console.log(isLoading)
   const verifyToken = async (currentToken: string): Promise<void> => {
     try {
       const response = await fetch(
@@ -76,9 +79,11 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
   };
   const fetchCourses = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/courses`);
-      if(response.ok) {
-        const data = await response.json()
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/courses`
+      );
+      if (response.ok) {
+        const data = await response.json();
         console.log("fetched", data);
         setCourses(data);
       }
