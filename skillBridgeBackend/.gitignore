@@ -6,7 +6,7 @@ npm-debug.log
 
 # Environment Variables 
 .env
-
+dist
 # macOS
 .DS_Store
 .AppleDouble
