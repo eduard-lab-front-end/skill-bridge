@@ -1,14 +1,9 @@
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-} from "@/components/ui/dropdown-menu";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Link, useNavigate } from "react-router-dom";
-import { IconBook, IconMenu2, IconMoon, IconSearch } from "@tabler/icons-react";
+import { IconBook, IconMenu2, IconMoon, IconShoppingCart } from "@tabler/icons-react";
 import { useContext } from "react";
 import { SessionContext } from "@/contexts/SessionContext";
 
@@ -68,7 +63,10 @@ export default function Component() {
           >
             {isAuthenticated ? "Logout" : 'Login / Register'}
           </Button>
-          <DropdownMenu>
+          <Button onClick={() => navigate('/cart')} variant='link' className="text-sm font-semibold text-muted-foreground hidden items-center gap-2 md:flex">
+          <IconShoppingCart stroke={2} />
+          </Button>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="rounded-full">
                 <IconSearch
@@ -80,6 +78,7 @@ export default function Component() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[300px] p-4">
+            
               <div className="relative">
                 <IconSearch
                   stroke={1}
@@ -92,7 +91,7 @@ export default function Component() {
                 />
               </div>
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
           <Toggle aria-label="Toggle dark mode" className="rounded-full">
             <IconMoon stroke={1} size={20} className="text-muted-foreground" />
           </Toggle>

@@ -84,7 +84,7 @@ export const CoursesSection = () => {
   };
   const { courses, isAuthenticated } = useContext(SessionContext);
   return (
-    <div className="max-w-screen-lg m-auto grid grid-cols-1 gap-6 my-16">
+    <div className="max-w-screen-lg m-auto grid grid-cols-1 gap-6 min-h-[80vh] mb-24 px-6">
       <div className="flex justify-between items-center">
         <div>
           <CardHeader className="text-left p-0 mb-3 text-2xl font-semibold">

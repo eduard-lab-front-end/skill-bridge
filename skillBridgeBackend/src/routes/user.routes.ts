@@ -7,14 +7,14 @@ const prisma = require("../db");
 const router = require("express").Router();
 const { isAuthenticated } = require("../middleware/route-guard-middleware");
 
-router.get('/', async (req:Request, res:Response, next: NextFunction) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const allUsers = await prisma.users.findMany({});
-    res.json(allUsers)
+    res.json(allUsers);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 router.post(
   "/signup",
   async (req: Request, res: Response, next: NextFunction) => {
@@ -73,9 +73,9 @@ router.get(
       const currentUser = await prisma.user.findUnique({
         where: {
           id: req.tokenPayload.userId, // not sure
-        }
+        },
       });
-      res.json(currentUser);
+      res.json({ id: currentUser.id });
     } catch (error) {
       next(error);
     }

@@ -1,4 +1,4 @@
-import { CoursesType, SessionContextType } from "@/types/sessionContextTypes";
+import { CoursesType, SessionContextType, UserType } from "@/types/sessionContextTypes";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 export const SessionContext = createContext<SessionContextType>({
@@ -23,7 +23,7 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
   const [needRefresh, setNeedRefresh] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [courses, setCourses] = useState<CoursesType[]>([]);
-  console.log(isLoading)
+  const [currentUser, setCurrentUser] = useState<UserType | undefined>(undefined);
   const verifyToken = async (currentToken: string): Promise<void> => {
     try {
       const response = await fetch(
@@ -35,6 +35,9 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
         }
       );
       if (response.status === 200) {
+        const userData = await response.json();
+   
+        setCurrentUser(userData)
         setToken(currentToken);
         setIsAuthenticated(true);
       } else {
@@ -128,6 +131,7 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
     courses,
     fetchWithToken,
     setNeedRefresh,
+    currentUser
   };
   return (
     <SessionContext.Provider value={contextValue}>

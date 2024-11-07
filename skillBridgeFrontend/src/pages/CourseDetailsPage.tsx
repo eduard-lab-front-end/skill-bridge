@@ -27,11 +27,12 @@ import { CommentsForm } from "@/components/CommentsForm";
 
 export const CourseDetailsPage = () => {
   const [course, setCourse] = useState<CoursesType>();
-  console.log(course);
+
   const { courseId } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { isAuthenticated, setNeedRefresh } = useContext(SessionContext);
+  const { setNeedRefresh, currentUser, fetchWithToken } = useContext(SessionContext);
+  const isCreator = currentUser?.id == course?.teacher?.id;
 
   const fetchCourseHandle = async () => {
     try {
@@ -46,6 +47,15 @@ export const CourseDetailsPage = () => {
       console.error("Error getting courses", error);
     }
   };
+  const addToCart = async () => {
+    try {
+      const response = await fetchWithToken('/api/cart/carts', 'POST', course)
+        // console.log(response.json())
+        // console.log(response.json())
+      } catch (error) {
+        console.log(error)
+    }
+  }
   const deleteCourseHandle = async () => {
     try {
       const response = await fetch(
@@ -68,6 +78,7 @@ export const CourseDetailsPage = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     fetchCourseHandle();
   }, []);
@@ -85,11 +96,12 @@ export const CourseDetailsPage = () => {
                     ? course.teacher.userName
                     : "Anonymous"}
                 </div>
-                {isAuthenticated && (
+                {isCreator && (
                   <div className="flex gap-3">
                     {course && (
                       <CoursesDialogFormUpdate
                         courseData={course}
+                        onSubmitSuccess={fetchCourseHandle}
                         trigger={
                           <Button
                             variant="outline"
@@ -151,7 +163,7 @@ export const CourseDetailsPage = () => {
                   <IconCurrencyDollar stroke={2} />
                   {course.price}
                 </CardDescription>
-                <Button className="rounded-full text-xs p-3">Buy Now</Button>
+                <Button className="rounded-full text-xs p-3" onClick={addToCart}>Buy Now</Button>
               </CardContent>
             </Card>
           </div>

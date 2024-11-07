@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { LoginPage } from "./pages/LoginPage";
 import { CourseDetailsPage } from "./pages/CourseDetailsPage";
 import { Toaster } from "@/components/ui/toaster";
+import ShoppingCart from "./components/ShoppingCart";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/courses" element={<CoursesPage />} />
         <Route path="/courses/:courseId" element={<CourseDetailsPage />} />
         <Route path="/blogs" element={<BlogsPage />} />
+        <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>

@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
     darkMode: ["class"],
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
       backgroundImage: {
-        'home-header': "url('./src/assets/images/home-background.png')",
+        'home-header': "url('/images/home-background.png')",
         'home-learn-section': "url('./src/assets/images/mask-group-img.png')",
       },
   		borderRadius: {

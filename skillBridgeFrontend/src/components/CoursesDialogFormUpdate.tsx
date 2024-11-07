@@ -30,6 +30,7 @@ import { ToastAction } from "./ui/toast";
 interface MyComponentProps {
   courseData: CoursesType;
   trigger: React.ReactNode;
+  onSubmitSuccess: () => void;
 }
 
 const formSchema = z.object({
@@ -85,10 +86,11 @@ const formSchema = z.object({
 export function CoursesDialogFormUpdate({
   trigger,
   courseData,
+  onSubmitSuccess,
 }: MyComponentProps) {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-  const { fetchWithToken, setNeedRefresh } = useContext(SessionContext);
+  const { fetchWithToken } = useContext(SessionContext);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { ...courseData },
@@ -100,7 +102,7 @@ export function CoursesDialogFormUpdate({
         title: "Updated",
         description: "Successfully updated",
       });
-      setNeedRefresh(true)
+      onSubmitSuccess()
     } catch (error) {
       toast({
         variant: "destructive",

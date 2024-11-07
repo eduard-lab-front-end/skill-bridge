@@ -15,6 +15,7 @@ model User {
   role         UserRole
   courses      Course[]
   blogs        Blog[]
+  carts        Cart[]
 }
 
 enum UserRole {
@@ -43,6 +44,8 @@ model Course {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
+  // Cart      Cart?    @relation(fields: [cartId], references: [id])
+  // cartId    String?
 }
 
 model Blog {
@@ -54,6 +57,15 @@ model Blog {
   authorId  String
   author    User      @relation(fields: [authorId], references: [id])
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+}
+
+model Cart {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  itemsId   String[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
 }

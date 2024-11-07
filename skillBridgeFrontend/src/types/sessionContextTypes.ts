@@ -1,3 +1,7 @@
+export interface UserType {
+  id: string;
+}
+
 export interface SessionContextType {
   token: string;
   isAuthenticated: boolean;
@@ -11,6 +15,7 @@ export interface SessionContextType {
     payload?: unknown
   ) => Promise<T | undefined>;
   setNeedRefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  currentUser?: UserType
 }
 export interface TeacherType {
   id: string;
