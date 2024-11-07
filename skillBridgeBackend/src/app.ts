@@ -1,15 +1,15 @@
+import express from "express";
+require("dotenv").config();
 
-require('dotenv').config()
+// const express = require('express')
 
-const express = require('express')
+const app: express.Express = express();
 
-const app = express()
+require("./config")(app);
 
-require('./config')(app)
+const indexRoutes = require("./routes/index.routes");
+app.use("/api", indexRoutes);
 
-const indexRoutes = require('./routes/index.routes')
-app.use('/api', indexRoutes)
+require("./error-handling")(app);
 
-require('./error-handling')(app)
-
-module.exports = app
+module.exports = app;

@@ -10,8 +10,13 @@ export interface SessionContextType {
     method?: "GET" | "POST" | "PUT" | "DELETE",
     payload?: unknown
   ) => Promise<T | undefined>;
+  setNeedRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
+export interface TeacherType {
+  id: string;
+  role: string;
+  userName: string;
+}
 export interface CoursesType {
   id: string;
   title: string;
@@ -19,8 +24,8 @@ export interface CoursesType {
   createdBy: string;
   durationWeeks: number;
   studentCount: number;
-  price: string;
-  discount: string;
+  price: number;
+  discount: number;
   category: string;
   overview: string;
   curriculum: string;
@@ -29,6 +34,7 @@ export interface CoursesType {
   quizCount: number;
   faqs: string;
   teacherId: string;
+  teacher?: TeacherType;
 }
 
 export interface UpdateCoursesType {

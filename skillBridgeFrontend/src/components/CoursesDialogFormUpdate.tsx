@@ -23,12 +23,12 @@ import {
 } from "@/components/ui/form";
 import { useContext, useState } from "react";
 import { SessionContext } from "@/contexts/SessionContext";
-import { UpdateCoursesType } from "@/types/sessionContextTypes";
+import { CoursesType } from "@/types/sessionContextTypes";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "./ui/toast";
 
 interface MyComponentProps {
-  courseData: UpdateCoursesType;
+  courseData: CoursesType;
   trigger: React.ReactNode;
 }
 
@@ -88,7 +88,7 @@ export function CoursesDialogFormUpdate({
 }: MyComponentProps) {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-  const { fetchWithToken } = useContext(SessionContext);
+  const { fetchWithToken, setNeedRefresh } = useContext(SessionContext);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { ...courseData },
@@ -100,6 +100,7 @@ export function CoursesDialogFormUpdate({
         title: "Updated",
         description: "Successfully updated",
       });
+      setNeedRefresh(true)
     } catch (error) {
       toast({
         variant: "destructive",

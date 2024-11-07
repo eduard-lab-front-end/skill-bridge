@@ -5,53 +5,62 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import category_1 from "../assets/icons/category-Icon-1.png";
+import category_2 from "../assets/icons/category-Icon-2.png";
+import category_3 from "../assets/icons/category-Icon-3.png";
+import category_4 from "../assets/icons/category-Icon-4.png";
+import category_5 from "../assets/icons/category-Icon-5.png";
+import category_6 from "../assets/icons/category-Icon-6.png";
+import category_7 from "../assets/icons/category-Icon-7.png";
+import category_8 from "../assets/icons/category-Icon-8.png";
+import category_9 from "../assets/icons/category-Icon-9.png";
 
-type TempObj = {
+type CategoriesType = {
   title: string;
   icon: string;
 }[];
 
 export const TopCategories = () => {
-  const categories: TempObj = [
+  const categories: CategoriesType = [
     {
-      title:  "Art & Design",
-      icon: '/src/assets/icons/categoty-Icon-1.png'
+      title: "Art & Design",
+      icon: category_1,
     },
     {
-      title:  "Development",
-      icon: '/src/assets/icons/categoty-Icon-2.png'
+      title: "Development",
+      icon: category_2,
     },
     {
-      title:  "Communication",
-      icon: '/src/assets/icons/categoty-Icon-3.png'
+      title: "Communication",
+      icon: category_3,
     },
     {
-      title:  "Videography",
-      icon: '/src/assets/icons/categoty-Icon-4.png'
+      title: "Videography",
+      icon: category_4,
     },
     {
-      title:  "Photography",
-      icon: '/src/assets/icons/categoty-Icon-5.png'
+      title: "Photography",
+      icon: category_5,
     },
     {
-      title:  "Marketing",
-      icon: '/src/assets/icons/categoty-Icon-6.png'
+      title: "Marketing",
+      icon: category_6,
     },
     {
-      title:  "Content Writing",
-      icon: '/src/assets/icons/categoty-Icon-7.png'
+      title: "Content Writing",
+      icon: category_7,
     },
     {
-      title:  "Finance",
-      icon: '/src/assets/icons/categoty-Icon-8.png'
+      title: "Finance",
+      icon: category_8,
     },
     {
-      title:  "Science",
-      icon: '/src/assets/icons/categoty-Icon-9.png'
+      title: "Science",
+      icon: category_9,
     },
     {
-      title:  "Network",
-      icon: '/src/assets/icons/categoty-Icon-1.png'
+      title: "Network",
+      icon: category_1,
     },
   ];
   return (
@@ -87,5 +96,3 @@ export const TopCategories = () => {
     </div>
   );
 };
-
-

@@ -31,8 +31,8 @@ export default function Component() {
   }
 
   return (
-    <header className="px-4 max-w-screen-lg m-auto sticky top-0 z-50 border-b bg-white dark:border-gray-800 dark:bg-gray-950">
-      <div className="container w-full flex h-16  items-center justify-between">
+    <header className="px-4 sm:px-0 max-w-screen-lg m-auto sticky top-0 z-50 border-b bg-white dark:border-gray-800 dark:bg-gray-950">
+      <div className="w-full flex h-16  items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <IconBook stroke={2} className="text-primary" />
           <span className="font-semibold">SkillBridge</span>

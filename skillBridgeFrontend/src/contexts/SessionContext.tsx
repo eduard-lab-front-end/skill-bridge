@@ -12,6 +12,7 @@ export const SessionContext = createContext<SessionContextType>({
     console.warn("fetchWithToken called without implementation.");
     return undefined;
   },
+  setNeedRefresh: () => {},
 });
 
 export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
@@ -19,6 +20,7 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [token, setToken] = useState<string>("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [needRefresh, setNeedRefresh] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [courses, setCourses] = useState<CoursesType[]>([]);
   console.log(isLoading)
@@ -41,6 +43,8 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
     } catch (error) {
       console.log(error);
       localStorage.removeItem("authToken");
+    } finally {
+      setIsLoading(false)
     }
   };
 
@@ -96,7 +100,6 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
       localStorage.setItem("authToken", token);
       setIsAuthenticated(true);
     }
-    // fetchCourses();
   }, [token]);
 
   useEffect(() => {
@@ -109,6 +112,13 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
     }
   }, []);
 
+  useEffect(() => {
+    if(needRefresh && !isLoading) {
+      fetchCourses();
+      setNeedRefresh(false);
+    }
+  }, [needRefresh, isLoading])
+
   const contextValue: SessionContextType = {
     token,
     isAuthenticated,
@@ -117,6 +127,7 @@ export const SessionContextProvider: React.FC<{ children: ReactNode }> = ({
     logout,
     courses,
     fetchWithToken,
+    setNeedRefresh,
   };
   return (
     <SessionContext.Provider value={contextValue}>

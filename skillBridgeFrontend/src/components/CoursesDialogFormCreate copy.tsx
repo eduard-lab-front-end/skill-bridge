@@ -20,10 +20,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SessionContext } from "@/contexts/SessionContext";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "./ui/toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 interface MyComponentProps {
   trigger: React.ReactNode;
@@ -36,41 +43,79 @@ const formSchema = z.object({
   image: z.string().min(2, {
     message: "Image must be at least 5 characters",
   }),
-  durationWeeks: z.number(),
-  studentCount: z.number(),
-  price: z.number(),
-  discount: z.number(),
+  durationWeeks: z.coerce
+    .number({
+      required_error: "Duration is required",
+      invalid_type_error: "Duration must be a number",
+    })
+    .int(),
+  studentCount: z.coerce
+    .number({
+      required_error: "Students is required",
+      invalid_type_error: "Students must be a number",
+    })
+    .int(),
+  price: z.coerce
+    .number({
+      required_error: "Price is required",
+      invalid_type_error: "Price must be a number",
+    })
+    .int()
+    .positive()
+    .min(1, { message: "Price should be at least 1" }),
+  discount: z.coerce
+    .number({
+      required_error: "Discount is required",
+      invalid_type_error: "Discount must be a number",
+    })
+    .int(),
   category: z.string().min(2, {
     message: "Category must be at least 5 characters",
   }),
   overview: z.string().min(2, {
-    message: "Category must be at least 5 characters",
+    message: "Overview must be at least 5 characters",
   }),
   curriculum: z.string(),
   level: z.string(),
-  lessonCount: z.number(),
-  quizCount: z.number(),
+  lessonCount: z.coerce
+    .number({
+      required_error: "Lessons amount is required",
+      invalid_type_error: "Lessons amount must be a number",
+    })
+    .int()
+    .positive()
+    .min(1, { message: "Lessons amount should be at least 1" }),
+  quizCount: z.coerce
+    .number({
+      required_error: "Quiz amount is required",
+      invalid_type_error: "Quiz amount must be a number",
+    })
+    .int()
+    .positive()
+    .min(1, { message: "Quiz amount should be at least 1" }),
   faqs: z.string(),
 });
 export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
-  const { fetchWithToken } = useContext(SessionContext);
+  const [open, setOpen] = useState<boolean>(false);
+  const { fetchWithToken, setNeedRefresh } = useContext(SessionContext);
   const { toast } = useToast();
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       image: "",
-      durationWeeks: 2,
-      studentCount: 136,
-      price: 59,
+      durationWeeks: 0,
+      studentCount: 0,
+      price: 0,
       discount: 0,
       category: "",
       overview: "",
       curriculum: "",
-      level: "beginner",
-      lessonCount: 10,
-      quizCount: 10,
+      level: "",
+      lessonCount: 0,
+      quizCount: 0,
       faqs: "",
     },
   });
@@ -82,6 +127,8 @@ export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
         title: "Created",
         description: "Successfully created",
       });
+      setOpen(false)
+      setNeedRefresh(true)
     } catch (error) {
       toast({
         variant: "destructive",
@@ -93,7 +140,7 @@ export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
     }
   };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="">
         <DialogHeader>
@@ -138,13 +185,9 @@ export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
               name="durationWeeks"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>DurationWeeks</FormLabel>
+                  <FormLabel>Duration</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="DurationWeeks"
-                      {...field}
-                      type="number"
-                    />
+                    <Input placeholder="Duration" {...field} type="number" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -155,13 +198,9 @@ export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
               name="studentCount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>StudentCount</FormLabel>
+                  <FormLabel>Students</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="StudentCount"
-                      {...field}
-                      type="number"
-                    />
+                    <Input placeholder="Students" {...field} type="number" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -237,10 +276,22 @@ export function CoursesDialogFormCreate({ trigger }: MyComponentProps) {
               name="level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Level</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Level" {...field} />
-                  </FormControl>
+                  <FormLabel>Role</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a level of your course" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Beginner">Beginner</SelectItem>
+                      <SelectItem value="Intermediate">Intermediate</SelectItem>
+                      <SelectItem value="Advanced">Advanced</SelectItem>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

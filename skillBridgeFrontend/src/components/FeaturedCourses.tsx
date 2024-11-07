@@ -103,7 +103,7 @@ export const FeaturedCourses = () => {
                 </span>
               </CardDescription>
               <CardTitle>{category.title}</CardTitle>
-              <CardContent className="p-0">
+             <CardContent className="p-0">
                 <div className="flex gap-2">
                   <p className="flex gap-2 mr-2">
                     <IconClockFilled stroke={1} className="text-primary" />{" "}
