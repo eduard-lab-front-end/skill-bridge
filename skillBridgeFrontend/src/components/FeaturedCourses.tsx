@@ -7,8 +7,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { IconClockFilled, IconCurrencyDollar, IconSchool } from "@tabler/icons-react";
+import {
+  IconClockFilled,
+  IconCurrencyDollar,
+  IconSchool,
+} from "@tabler/icons-react";
 import { Separator } from "./ui/separator";
+import course_1 from "../assets//images/course-1.png";
+import course_2 from "../assets//images/course-2.png";
+import course_3 from "../assets//images/course-3.png";
 
 type TempObj = {
   title: string;
@@ -23,7 +30,7 @@ export const FeaturedCourses = () => {
   const categories: TempObj = [
     {
       title: "Art & Design",
-      img: "/src/assets/images/course-1.png",
+      img: course_1,
       createdBy: "Eric NewOne",
       duration: "2",
       students: "156",
@@ -31,7 +38,7 @@ export const FeaturedCourses = () => {
     },
     {
       title: "Art & Design",
-      img: "/src/assets/images/course-2.png",
+      img: course_2,
       createdBy: "Eric NewOne",
       duration: "2",
       students: "156",
@@ -39,7 +46,7 @@ export const FeaturedCourses = () => {
     },
     {
       title: "Art & Design",
-      img: "/src/assets/images/course-3.png",
+      img: course_3,
       createdBy: "Eric NewOne",
       duration: "2",
       students: "156",
@@ -47,7 +54,7 @@ export const FeaturedCourses = () => {
     },
     {
       title: "Art & Design",
-      img: "/src/assets/images/course-2.png",
+      img: course_1,
       createdBy: "Eric NewOne",
       duration: "2",
       students: "156",
@@ -55,7 +62,7 @@ export const FeaturedCourses = () => {
     },
     {
       title: "Art & Design",
-      img: "/src/assets/images/course-3.png",
+      img: course_2,
       createdBy: "Eric NewOne",
       duration: "2",
       students: "156",
@@ -63,7 +70,7 @@ export const FeaturedCourses = () => {
     },
     {
       title: "Art & Design",
-      img: "/src/assets/images/course-2.png",
+      img: course_3,
       createdBy: "Eric NewOne",
       duration: "2",
       students: "156",
@@ -103,7 +110,7 @@ export const FeaturedCourses = () => {
                 </span>
               </CardDescription>
               <CardTitle>{category.title}</CardTitle>
-             <CardContent className="p-0">
+              <CardContent className="p-0">
                 <div className="flex gap-2">
                   <p className="flex gap-2 mr-2">
                     <IconClockFilled stroke={1} className="text-primary" />{" "}
@@ -121,7 +128,7 @@ export const FeaturedCourses = () => {
                   <IconCurrencyDollar stroke={1} />
                   {category.price}
                 </p>
-                <Button variant='ghost'>View More</Button>
+                <Button variant="ghost">View More</Button>
               </CardFooter>
             </div>
           </Card>

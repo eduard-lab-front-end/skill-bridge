@@ -5,6 +5,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { IconMailFilled, IconPhoneFilled } from "@tabler/icons-react";
+import map from "../assets//images/map.png";
 
 export const ContactSection = () => {
   return (
@@ -44,7 +45,7 @@ export const ContactSection = () => {
         </Card>
       </div>
       <div>
-        <img src="/public/images/map.png" alt="" />
+        <img src={map} alt="" />
       </div>
     </div>
   );
