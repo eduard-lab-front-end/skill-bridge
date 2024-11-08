@@ -83,6 +83,7 @@ export const CoursesSection = () => {
     navigate(`/courses/${courseId}`);
   };
   const { courses, isAuthenticated } = useContext(SessionContext);
+  console.log(courses)
   return (
     <div className="max-w-screen-lg m-auto grid grid-cols-1 gap-6 min-h-[80vh] mb-24 px-6">
       <div className="flex justify-between items-center">
@@ -124,7 +125,7 @@ export const CoursesSection = () => {
                 <CardDescription className="text-muted-foreground font-semibold lg:text-lg">
                   by{" "}
                   <span className="text-secondary-foreground">
-                    {course.createdBy}
+                    {course.teacher?.userName}
                   </span>
                 </CardDescription>
                 <CardTitle className="lg:text-xl">{course.title}</CardTitle>

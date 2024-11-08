@@ -8,7 +8,7 @@ import { IconMailFilled, IconPhoneFilled } from "@tabler/icons-react";
 
 export const ContactSection = () => {
   return (
-    <div className="max-w-screen-lg m-auto p-4 my-6 flex flex-col md:flex-row gap-4 lg:p-0">
+    <div className="max-w-screen-lg m-auto p-4 flex flex-col md:flex-row gap-4 lg:p-0 items-center my-16">
       <div className="h-full md:w-1/4">
         <Card className="p-4 h-full border-none shadow-none">
           <CardTitle className="mb-4">Need A Direct Line?</CardTitle>
@@ -44,7 +44,7 @@ export const ContactSection = () => {
         </Card>
       </div>
       <div>
-        <img src="/src/assets/images/map.png" alt="" />
+        <img src="/public/images/map.png" alt="" />
       </div>
     </div>
   );

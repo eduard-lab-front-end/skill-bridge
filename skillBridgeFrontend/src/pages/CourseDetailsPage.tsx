@@ -87,7 +87,7 @@ export const CourseDetailsPage = () => {
     <div className="min-h-[90vh]">
       <div className="bg-accent-foreground py-4">
         {course && (
-          <div className="flex flex-col justify-between md:flex-row flex-wrap max-w-screen-lg m-auto lg:flex-row">
+          <div className="p-4 flex flex-col justify-between md:flex-row flex-wrap max-w-screen-lg m-auto lg:flex-row">
             <Card className="p-0 bg-transparent text-muted border-none flex flex-col gap-7 justify-evenly py-4 w-full">
               <CardHeader className="p-0 text-lg flex flex-row items-center justify-between">
                 <div>
@@ -170,7 +170,7 @@ export const CourseDetailsPage = () => {
         )}
       </div>
       {course && (
-        <Tabs defaultValue="overview" className="max-w-screen-lg m-auto mt-12">
+        <Tabs defaultValue="overview" className="max-w-screen-lg m-auto mt-12 p-4">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="program">Program</TabsTrigger>

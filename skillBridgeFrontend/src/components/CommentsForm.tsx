@@ -41,7 +41,7 @@ export const CommentsForm = () => {
     console.log(values);
   };
   return (
-    <div className="flex flex-col max-w-screen-lg m-auto bg-transparent mt-10">
+    <div className="flex flex-col max-w-screen-lg m-auto bg-transparent mt-10 p-4">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <h3 className="text-xl font-semibold">Leave A Comment</h3>

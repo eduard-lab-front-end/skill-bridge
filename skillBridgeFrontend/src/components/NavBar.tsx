@@ -1,14 +1,18 @@
-
 import { Button } from "@/components/ui/button";
 import { Toggle } from "@/components/ui/toggle";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Link, useNavigate } from "react-router-dom";
-import { IconBook, IconMenu2, IconMoon, IconShoppingCart } from "@tabler/icons-react";
+import {
+  IconBook,
+  IconMenu2,
+  IconMoon,
+  IconShoppingCart,
+} from "@tabler/icons-react";
 import { useContext } from "react";
 import { SessionContext } from "@/contexts/SessionContext";
 
 export default function Component() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const session = useContext(SessionContext);
   if (!session) {
     throw new Error(
@@ -16,18 +20,18 @@ export default function Component() {
     );
   }
   const { isAuthenticated, logout } = session;
-  const logoutHandler = ():void => {
-    if(isAuthenticated) {
+  const logoutHandler = (): void => {
+    if (isAuthenticated) {
       logout();
-      navigate('/');
+      navigate("/");
     } else {
-      navigate('/login')
+      navigate("/login");
     }
-  }
+  };
 
   return (
-    <header className="px-4 sm:px-0 max-w-screen-lg m-auto sticky top-0 z-50 border-b bg-white dark:border-gray-800 dark:bg-gray-950">
-      <div className="w-full flex h-16  items-center justify-between">
+    <header className="px-4 sm:px-0  sticky top-0 z-50 border-b bg-white dark:border-gray-800 dark:bg-gray-950">
+      <div className="max-w-screen-lg m-auto flex h-16  items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <IconBook stroke={2} className="text-primary" />
           <span className="font-semibold">SkillBridge</span>
@@ -57,14 +61,18 @@ export default function Component() {
         </nav>
         <div className="flex items-center gap-4">
           <Button
-            variant='link'
+            variant="link"
             className="text-sm font-semibold text-muted-foreground hidden items-center gap-2 md:flex"
             onClick={logoutHandler}
           >
-            {isAuthenticated ? "Logout" : 'Login / Register'}
+            {isAuthenticated ? "Logout" : "Login / Register"}
           </Button>
-          <Button onClick={() => navigate('/cart')} variant='link' className="text-sm font-semibold text-muted-foreground hidden items-center gap-2 md:flex">
-          <IconShoppingCart stroke={2} />
+          <Button
+            onClick={() => navigate("/cart")}
+            variant="link"
+            className="text-sm font-semibold text-muted-foreground hidden items-center gap-2 md:flex"
+          >
+            <IconShoppingCart stroke={2} />
           </Button>
           {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>

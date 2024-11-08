@@ -1,9 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  SessionContext,
-} from "@/contexts/SessionContext";
+import { SessionContext } from "@/contexts/SessionContext";
 import { IconHeart, IconRefresh, IconTrash } from "@tabler/icons-react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -30,7 +28,7 @@ export default function ShoppingCart() {
               <Card className="grid gap-4 p-4 md:grid-cols-3 md:gap-4">
                 <div className="flex items-center gap-4 md:col-span-2">
                   <img
-                    src="/placeholder.svg"
+                    src={course.image}
                     alt="Product image"
                     width={200}
                     height={200}

@@ -69,7 +69,7 @@ export const BlogsSection = () => {
     },
   ];
   return (
-    <div className="max-w-screen-lg m-auto grid grid-cols-1 gap-6 my-16">
+    <div className="max-w-screen-lg m-auto grid grid-cols-1 gap-6 my-16 p-4">
       {mockCourses.map((course) => (
         <Card className="p-0 pb-5 min-h-48 flex flex-col justify-center gap-4 md:flex-row md:gap-0 md:pb-0 md:justify-normal">
           <CardHeader className="p-0 w-full md:w-1/2">
